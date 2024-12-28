@@ -1,0 +1,25 @@
+The following CSS code snippet demonstrates an uncommon error related to the specificity of CSS selectors:
+
+```css
+div {
+  color: blue;
+}
+
+.special-class div {
+  color: red;
+}
+
+#very-specific-id {
+  color: green;
+}
+
+#very-specific-id.special-class {
+  color: purple;
+}
+
+#very-specific-id.special-class div {
+  color: yellow;
+} 
+```
+
+The issue lies in the unexpected behavior when combining ID selectors, class selectors, and element selectors. In this case, the final rule (`#very-specific-id.special-class div`) overrides all previous rules despite the higher specificity of some earlier rules.  The `yellow` color might unexpectedly not show if the developer expects `purple` or `green` due to the unexpected order of cascading specificity rules.  This can create difficult-to-debug situations where the most specific selector doesn't appear to win.
